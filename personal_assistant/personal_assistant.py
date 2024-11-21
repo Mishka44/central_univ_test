@@ -3,6 +3,17 @@ import json
 import datetime
 import csv
 
+def load_data(file_path, default_data):
+    if not os.path.exists(file_path):
+        save_data(file_path, default_data)
+        return default_data
+    with open(file_path, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+def save_data(file_path, data):
+    with open(file_path, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
+
 def main_menu():
     while True:
         print('\nДобро пожаловать в Персональный помощник!')
